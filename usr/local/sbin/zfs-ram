@@ -39,7 +39,21 @@ DEV1_TYPE=cache
 ################ CODEBASE ##################
 ############################################
 
+if [ "$DEV0_ENABLE" == 'yes' ] && [ "$DEV1_ENABLE" == 'yes' ]; 
+	then DEV=2
+elif [ "$DEV0_ENABLE" == 'yes' ] && [ "$DEV1_ENABLE" == 'no' ]; 
+	then DEV=1
+elif [ "$DEV0_ENABLE" == 'no' ] && [ "$DEV1_ENABLE" == 'yes' ]; 
+	then DEV=1
+elif [ "$DEV0_ENABLE" == 'no' ] && [ "$DEV1_ENABLE" == 'no' ]; 
+	then 
+		echo error, no drives used
+		exit 1
 
+else 
+	echo unknown settings has been used, exiting
+	exit 1
+fi
 
 modprobe zram num_devices=$DEVS
 
