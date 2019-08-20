@@ -40,13 +40,17 @@ DEV1_TYPE=cache
 ############################################
 
 if [ "$DEV0_ENABLE" == 'yes' ] && [ "$DEV1_ENABLE" == 'yes' ]; 
-	then DEV=2
+	then 
+	DEV=2
 elif [ "$DEV0_ENABLE" == 'yes' ] && [ "$DEV1_ENABLE" == 'no' ]; 
-	then DEV=1
+	then 
+	DEV=1
 elif [ "$DEV0_ENABLE" == 'no' ] && [ "$DEV1_ENABLE" == 'yes' ]; 
-	then DEV=1
+	then 
+	DEV=1
 elif [ "$DEV0_ENABLE" == 'no' ] && [ "$DEV1_ENABLE" == 'no' ]; 
 	then 
+	DEV=0
 		echo error, no drives used
 		exit 1
 
