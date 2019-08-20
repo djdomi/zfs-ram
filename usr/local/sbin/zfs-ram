@@ -39,35 +39,6 @@ DEV1_TYPE=cache
 ################ CODEBASE ##################
 ############################################
 
-if [ "$DEV0_ENABLE" == 'yes' ] && [ "$DEV1_ENABLE" == 'yes' ]; 
-	then 
-	DEV=2
-elif [ "$DEV0_ENABLE" == 'yes' ] && [ "$DEV1_ENABLE" == 'no' ]; 
-	then 
-	DEV=1
-elif [ "$DEV0_ENABLE" == 'no' ] && [ "$DEV1_ENABLE" == 'yes' ]; 
-	then 
-	DEV=1
-elif [ "$DEV0_ENABLE" == 'no' ] && [ "$DEV1_ENABLE" == 'no' ]; 
-	then 
-	DEV=0
-		echo error, no drives used
-		exit 1
-
-else 
-	echo unknown settings has been used, exiting
-	exit 1
-fi
-
-if [ -z "$DEV" ]
-then
-      echo "\$DEV is empty"
-      exit 1
-else
-     modprobe zram num_devices=$DEVS
-fi
-
-
 
 
 case "$1" in
@@ -76,7 +47,39 @@ case "$1" in
         ;;
 
     start)
-                
+
+if [ "$DEV0_ENABLE" == 'yes' ] && [ "$DEV1_ENABLE" == 'yes' ]; 
+		then 
+			DEV=2
+			
+	elif [ "$DEV0_ENABLE" == 'yes' ] && [ "$DEV1_ENABLE" == 'no' ]; 
+		then 
+			DEV=1
+	elif [ "$DEV0_ENABLE" == 'no' ] && [ "$DEV1_ENABLE" == 'yes' ]; 
+		then 
+			DEV=1
+	elif [ "$DEV0_ENABLE" == 'no' ] && [ "$DEV1_ENABLE" == 'no' ]; 
+		then 
+			DEV=0
+			echo "error, no drives used"
+			exit 1
+
+	else 
+			echo unknown settings has been used, exiting
+		exit 1
+fi
+
+if [ -z "$DEV" ]
+then
+      echo "\$DEV is empty, apporting hardly"
+      exit 1
+else
+     modprobe zram num_devices=$DEVS
+fi
+
+
+
+
                 
                 if [ "$DEV0_ENABLE" = yes ] 
                 then 
@@ -115,7 +118,6 @@ case "$1" in
         wait
         sleep 1.5
         modprobe --remove zram
-        #exit 0
         ;;
 
     
