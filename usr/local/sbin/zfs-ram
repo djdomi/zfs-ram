@@ -13,6 +13,7 @@ SIZE1=512M
 
 
 #yes/no (lowercase)
+DEV0_ENABLE=yes
 DEV1_ENABLE=no
 
 # see as reference: https://www.unixarena.com/2013/07/zfs-zpool-cache-and-log-devices.html/
@@ -21,19 +22,17 @@ DEV1_ENABLE=no
 DEV0_TYPE=log
 DEV1_TYPE=cache
 
-#Size of Secondary Device, in case
-
- 
 
 ############################################
-### CODEBASE
-### CODEBASE 
-## ONLY CHANGE WHEN YOU KNOW
-## WHAT YOU DO - it will else prevent 
-## the system to boot...
-## okay, its easy to fix :)
-## zfs import -a -m
-## zfs remove rpool
+################ CODEBASE ##################
+################ CODEBASE ##################
+##                                        ##
+## ONLY CHANGE WHEN YOU KNOW              ##
+## WHAT YOU DO - it will else prevent     ##
+## the system to boot...                  ##
+## okay, its easy to fix :)               ##
+## zfs import -a -m                       ##
+## zfs remove rpool zram0 zram1           ##
 ############################################
 
 
