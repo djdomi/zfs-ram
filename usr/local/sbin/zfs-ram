@@ -55,7 +55,15 @@ else
 	exit 1
 fi
 
-modprobe zram num_devices=$DEVS
+if [ -z "$DEV" ]
+then
+      echo "\$DEV is empty"
+      exit 1
+else
+     modprobe zram num_devices=$DEVS
+fi
+
+
 
 
 case "$1" in
