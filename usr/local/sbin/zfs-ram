@@ -129,7 +129,7 @@ fi
                       modprobe --remove zram
                 ;;
     *)
-        echo "Usage: $(basename $0) (stop | status | force-stop)"
+        echo "Usage: $(basename $0) (start | stop | force-stop | status)"
         exit 1
         ;;
 esac
