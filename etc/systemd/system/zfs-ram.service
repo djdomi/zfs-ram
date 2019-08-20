@@ -1,0 +1,15 @@
+
+[Install]
+WantedBy = multi-user.target
+
+[Unit]
+Description=Use compressed RAM as in-memory swap
+After=zfs-import.target
+After=zfs-mount.service
+After=zfs.target
+
+[Service]
+Type=oneshot
+RemainAfterExit=true
+ExecStart=/usr/local/sbin/zfs-ram start
+ExecStop=/usr/local/sbin/zfs-ram stop
