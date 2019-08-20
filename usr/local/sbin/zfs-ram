@@ -117,7 +117,7 @@ case "$1" in
         modprobe --remove zram
         #exit 0
         ;;
-    *)
+
     
  force-stop)
                       zpool remove $POOL /dev/zram0
