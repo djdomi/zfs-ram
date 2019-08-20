@@ -1,0 +1,104 @@
+#!/bin/bash
+
+#This script do the action of the systemd
+
+
+##zfs pool name
+POOL=rpool
+
+
+#Size of first Device, can be M, G (1024M, 1G - M&G must be UPPERCASE)
+SIZE0=1024M
+SIZE1=512M
+
+
+#yes/no (lowercase)
+DEV1_ENABLE=no
+
+# see as reference: https://www.unixarena.com/2013/07/zfs-zpool-cache-and-log-devices.html/
+#log/cache
+
+DEV0_TYPE=log
+DEV1_TYPE=cache
+
+#Size of Secondary Device, in case
+
+ 
+
+############################################
+### CODEBASE
+### CODEBASE 
+## ONLY CHANGE WHEN YOU KNOW
+## WHAT YOU DO - it will else prevent 
+## the system to boot...
+## okay, its easy to fix :)
+## zfs import -a -m
+## zfs remove rpool
+############################################
+
+
+
+
+case "$1" in
+        status)
+        zpool iostat -v
+        ;;
+
+    start)
+                modprobe zram num_devices=$DEVS
+                
+                if [ "$DEV0_ENABLE" = yes ] 
+                then 
+                     echo $SIZE0 >/sys/block/zram0/disksize
+                     zpool add $POOL $DEV0_TYPE /dev/zram0
+                else
+                     echo "Device 1 not active"; fi
+
+                if [ "$DEV1_ENABLE" = yes ] 
+                then 
+                     echo $SIZE1 >/sys/block/zram0/disksize
+                     zpool add $POOL $DEV1_TYPE /dev/zram1
+                else
+                     echo "Device 1 not active"; fi
+                      
+
+        ;;
+    stop)
+
+                if [ "$DEV0_ENABLE" = yes ] 
+                then 
+                    
+                     zpool remove $POOL /dev/zram0
+                else
+                     echo "Device 0 was not active"; fi
+
+                if [ "$DEV1_ENABLE" = yes ] 
+                then 
+
+                     zpool add $POOL /dev/zram1
+                else
+                     echo "Device 1 was not active"; fi
+
+
+
+        wait
+        sleep 1.5
+        modprobe --remove zram
+        #exit 0
+        ;;
+    *)
+    
+ force-stop)
+                      zpool remove $POOL /dev/zram0
+                      zpool remove $POOL /dev/zram1
+                      wait
+                      sleep 1.5
+                      modprobe --remove zram
+                ;;
+    *)
+        echo "Usage: $(basename $0) (stop | status | force-stop)"
+        exit 1
+        ;;
+esac
+
+# End of file
