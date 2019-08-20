@@ -29,13 +29,19 @@ DEV1_TYPE=cache
 ##                                        ##
 ## ONLY CHANGE WHEN YOU KNOW              ##
 ## WHAT YOU DO - it will else prevent     ##
-## the system to boot...                  ##
+## if the the system dont boot...         ##
 ## okay, its easy to fix :)               ##
+##                                        ##
 ## zfs import -a -m                       ##
 ## zfs remove rpool zram0 zram1           ##
+##                                        ##
+################ CODEBASE ##################
+################ CODEBASE ##################
 ############################################
 
 
+
+modprobe zram num_devices=$DEVS
 
 
 case "$1" in
@@ -44,7 +50,7 @@ case "$1" in
         ;;
 
     start)
-                modprobe zram num_devices=$DEVS
+                
                 
                 if [ "$DEV0_ENABLE" = yes ] 
                 then 
