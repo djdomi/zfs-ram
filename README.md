@@ -16,7 +16,7 @@ usually, around 512-1024mb are fine, because it only match the random writes and
 <br><br>
 #### ZFS Cache ####
 This is the READ buffer
-Thats the point we want, if you want to use this feature, and you we are planty of ram (as mentoid minimum 16GB even it is better 32GB++++++++) you should use at least 4, better 8 GB to have a benefit of it. On a _low_ _end_ _consumer_ (*i mean that one tahts just a bit faster as a HDD*) SSD it does only sense, if you have 32GB RAM and assign at least 8-12GB
+Thats the point we want, if you want to use this feature, and you we are planty of ram (as mentoid minimum 16GB even it is better 32GB++++++++) you should use at least 4, better 8 GB to have a benefit of it. On a _low_ _end_ _consumer_ ( _i mean that one tahts just a bit faster as a HDD_ ) SSD it does only sense, if you have 32GB RAM and assign at least 8-12GB
 <br>
 <br>
 # howto: #
