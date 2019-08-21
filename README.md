@@ -19,3 +19,15 @@ If you have 32GB of ram and only use the half you can use for sure at least 8-12
 
 howto:
 just download the complete zip/git and run install.sh
+
+
+########################################
+in Reference to: https://www.unixarena.com/2013/07/zfs-zpool-cache-and-log-devices.html/
+
+## LOG ##
+This is the WRITE buffer
+usually, around 512-1024mb are fine
+
+## Cache ##
+This is the READ buffer
+Thats the point, if you want to use this feature, and you are planty of ram (as mentoid minimum 16GB even it is better 32GB++++++++) you should use at least 4 or 8 GB to have a benefit of it. myself does this not use on my laptop because i have only 16GB and running some VM where i cant use it... and i use a SSD Pro sofar reading isn't thats the problem :-)
