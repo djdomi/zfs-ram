@@ -99,7 +99,7 @@ fi
                 if [ "$DEV1_ENABLE" = yes ] 
                 then 
 		     echo "Device 0 Type $DEV0_TYPE actived with size: $SIZE0"
-                     echo $SIZE1 >/sys/block/zram0/disksize
+                     echo $SIZE1 >/sys/block/zram1/disksize
                      zpool add $POOL $DEV1_TYPE /dev/zram1
                 else
                      echo "Device 1 not actived"; fi
