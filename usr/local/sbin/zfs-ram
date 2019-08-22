@@ -118,7 +118,7 @@ fi
                 if [ "$DEV1_ENABLE" = yes ] 
                 then 
 
-                     zpool add $POOL /dev/zram1
+                     zpool stop $POOL /dev/zram1
                 else
                      echo "Device 1 was not active"; fi
 
